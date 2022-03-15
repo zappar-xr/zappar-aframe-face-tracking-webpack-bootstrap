@@ -14,11 +14,12 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: "head",
 			template: './src/index.html',
-			filename: 'index.html'
+			filename: 'index.html',
+			scriptLoading: "blocking"
 		})
 	],
 	devServer: {
-		contentBase: './dist',
+		static: './dist',
 		https: true,
 		host: '0.0.0.0'
 	},
@@ -29,20 +30,28 @@ module.exports = {
 				type: "javascript/auto",
 				loader: "file-loader"
 			  },
-		{
-			test: /\.html$/,
-			use: {
-				loader: 'html-loader',
-				options: {
-					attributes: {
-						list: [
-							{ tag: "img", attribute: "src", type: "src" },
-							{ tag: "a-asset-item", attribute: "src", type: "src" }
-						]
-					}
-				}
-			}
-		},
+      {
+        test: /\.html$/,
+        use: {
+          loader: "html-loader",
+          options: {
+            attributes: {
+              list: [
+                {
+                  tag: "img",
+                  attribute: "src",
+                  type: "src",
+                },
+                {
+                  tag: "a-asset-item",
+                  attribute: "src",
+                  type: "src",
+                },
+              ],
+            },
+          },
+        },
+      },
 		{
 			test: /\.(jpe?g|png|mp3|wav|zpt)$/,
 			use: [
