@@ -24,46 +24,42 @@ module.exports = {
 		host: '0.0.0.0'
 	},
 	module: {
-		rules: [
-			{
+		rules: [{
 				test: /zcv\.wasm$/,
 				type: "javascript/auto",
 				loader: "file-loader"
-			  },
-      {
-        test: /\.html$/,
-        use: {
-          loader: "html-loader",
-          options: {
-            attributes: {
-              list: [
-                {
-                  tag: "img",
-                  attribute: "src",
-                  type: "src",
-                },
-                {
-                  tag: "a-asset-item",
-                  attribute: "src",
-                  type: "src",
-                },
-              ],
-            },
-          },
-        },
-      },
-		{
-			test: /\.(jpe?g|png|mp3|wav|zpt)$/,
-			use: [
-				{
+			},
+			{
+				test: /\.html$/,
+				use: {
+					loader: "html-loader",
+					options: {
+						attributes: {
+							list: [{
+									tag: "img",
+									attribute: "src",
+									type: "src",
+								},
+								{
+									tag: "a-asset-item",
+									attribute: "src",
+									type: "src",
+								},
+							],
+						},
+					},
+				},
+			},
+			{
+				test: /\.(jpe?g|png|mp3|wav|zpt)$/,
+				use: [{
 					loader: 'file-loader',
 					options: {
 						name: '[path][name].[ext]?[hash:7]',
 						context: 'src',
 					},
-				},
-			],
-		},
-	]
+				}, ],
+			},
+		]
 	}
 };
