@@ -24,11 +24,7 @@ module.exports = {
 		host: '0.0.0.0'
 	},
 	module: {
-		rules: [{
-				test: /zcv\.wasm$/,
-				type: "javascript/auto",
-				loader: "file-loader"
-			},
+		rules: [
 			{
 				test: /\.html$/,
 				use: {
